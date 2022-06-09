@@ -1,0 +1,90 @@
+<div class="app">
+  <header class="app-header">
+    <h1 class="text-center">
+      Custom Insent.ai Bot
+    </h1>
+  </header>
+
+  <div class="widget-area" [ngClass]="{ 'show': isWidgetOpen == true, 'hide': isWidgetOpen == false}">
+    <div class="bot-header">
+      <span class="bot-icon">
+        <img src="../assets/images/bot-icon.jpeg" />
+      </span>
+      <span class="bot-name">Insent Bot</span>
+    </div>
+    <ng-container *ngIf="chatMessages.length > 0">
+
+      <!-- Chat box -->
+      <div>
+        <div class="chat-area" ref={chatAreaRef}>
+          <div *ngFor="let msg of chatMessages; index as i">
+            <div class="chat-msg " [ngClass]="{ 'show': msg.buttons == block, 'sent-by-me': msg.sentByMe == true}">
+
+              <!-- Sender Image render -->
+              <span *ngIf="msg.sender && msg.sender.img && !msg.buttons && msg.type != values.MSG_TYPES.PLAIN_INPUT"
+                class="msg-sender">
+                <img src={{msg.sender.img}} />
+              </span>
+
+              <!-- Text message render -->
+              <ng-container *ngIf="msg.text">
+                <div class="chat-txt" [ngClass]="{ 'fb-response': msg.isFeedbackResponse == true}"
+                  [innerHtml]="msg.text">
+                </div>
+              </ng-container>
+
+              <!-- Buttons message render -->
+              <ng-container *ngIf="msg.buttons">
+                <ng-container *ngIf="msg.buttons.fields.length">
+                  <ng-container *ngFor="let btnName of msg.buttons.fields; index as bkey">
+                    <div class="btn-name" (click)="sendServerMsg(btnName)" [innerHtml]="btnName">
+                    </div>
+                  </ng-container>
+                </ng-container>
+              </ng-container>
+
+              <!-- Feedback question render -->
+              <ng-container *ngIf="msg.type && msg.type == values.MSG_TYPES.FEEDBACK">
+                <div class="feedback-msg chat-txt">
+                  <div class="" [innerHtml]="msg.feedback.message">
+                  </div>
+                  <div class="feedback-wrapper">
+                    <ng-container *ngFor="let fd of values.FEEDBACK_EMOJIS; index as feedBackVal">
+                      <span class="emoji-wrapper" (click)="sendServerMsg(feedBackVal + 1)">
+                        <img id="insent-rating-card-rating-icon" [src]="getImages(fd.imgFileName)" alt={{fd.altName}} />
+                      </span>
+                    </ng-container>
+                  </div>
+                </div>
+              </ng-container>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat input text area render -->
+        <div *ngIf="lastChatMsg && showInput" class="chat-input-wrapper">
+          <textarea [(ngModel)]="message" name="message" placeholder="Type your reply" rows="1" id="textInputArea"
+            (keydown)="submitTextarea($event)" (keyup)="submitTextarea($event)"></textarea>
+        </div>
+      </div>
+
+    </ng-container>
+  </div>
+
+  <div class="bot-widget-wrapper" (click)="toggleWidgetOpenState()">
+    <div *ngIf="!isWidgetOpen && initConvoInfo?.popupMessage?.message" class="convo-part"
+      [innerHtml]="initConvoInfo?.popupMessage?.message">
+    </div>
+
+    <span class="bot-icon">
+      <img *ngIf="isWidgetOpen" src="../assets/images/close-icon.png" width="40" />
+      <img *ngIf="!isWidgetOpen" src="../assets/images/bot-icon-2.jpeg" width="72" />
+    </span>
+  </div>
+
+</div>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="line-scale-party">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

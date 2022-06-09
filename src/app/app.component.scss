@@ -1,0 +1,205 @@
+.app {
+    text-align: center;
+
+    .text-center {
+        text-align: center;
+    }
+}
+
+
+.bot-widget-wrapper {
+    display: flex;
+    position: fixed;
+    bottom: 30px;
+    right: 111px;
+    padding: 8px;
+    cursor: pointer;
+
+    .convo-part {
+        box-shadow: 0px 1px 6px 1px #00000029;
+        border-radius: 12px;
+        margin-right: 6px;
+        display: flex;
+        align-items: center;
+        padding: 3px 38px;
+        max-width: 290px;
+        text-align: left;
+    }
+}
+
+.widget-area {
+    display: none;
+    position: fixed;
+    bottom: 120px;
+    right: 111px;
+    width: 430px;
+    height: 465px;
+    text-align: left;
+    box-shadow: 0 7px 6px 1px #00000029;
+    background: linear-gradient(180deg, transparent 10px 48px, #fff 48px);
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    transition: bottom 2s linear;
+
+    .chat-area {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .msg-sender {
+        display: inline-block;
+
+        img {
+            width: 40px;
+            border-radius: 26px;
+        }
+    }
+
+    .chat-msg {
+        padding: 8px 6px;
+        display: flex;
+
+        &.sent-by-me {
+            justify-content: right;
+
+            .chat-txt {
+                color: #fff;
+                background-color: rgb(10, 91, 255);
+
+                &.fb-response {
+                    align-items: center;
+                    display: flex;
+
+                    img {
+                        margin-right: 6px;
+                    }
+                }
+            }
+        }
+
+        &.block {
+            display: block
+        }
+
+        .btn-name {
+            clear: both;
+            float: right;
+            margin: 5px 0px;
+            display: block;
+            width: auto;
+            color: rgb(10, 91, 255);
+            background-color: rgb(255, 255, 255);
+            border: 1px solid #212021;
+            padding: 7px;
+            border-radius: 10px;
+            color: rgb(10, 91, 255);
+            background-color: rgb(255, 255, 255);
+            border-color: rgb(10, 91, 255);
+            cursor: pointer;
+
+            &:hover {
+                color: #fff;
+                background-color: rgb(10, 91, 255);
+            }
+        }
+    }
+
+    .feedback-msg {
+        text-align: center;
+
+        .emoji-wrapper {
+            display: inline-block;
+            padding: 8px 10px;
+            cursor: pointer;
+
+            img {
+                // transition: all .2s ease-in-out;
+            }
+
+            img:hover {
+                transform: scale(1.5);
+            }
+        }
+    }
+
+    .chat-txt {
+        display: inline-block;
+        margin-left: 8px;
+        background: rgb(245, 248, 250);
+        border-radius: 10px;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+
+        &.feedback-msg {
+            display: inline-block;
+        }
+    }
+
+    .bot-header {
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        padding: 8px;
+        background: rgb(10, 91, 255);
+        color: rgb(255, 255, 255);
+        padding: 8px 15px;
+        display: flex;
+        align-items: center;
+
+        .bot-name {
+            padding-left: 10px;
+            font-weight: 500;
+        }
+    }
+
+    .chat-input-wrapper {
+        position: absolute;
+        bottom: 0;
+        padding: 6px 16px;
+        width: 93%;
+        display: flex;
+        align-items: center;
+
+        textarea {
+            padding: 9px 9px;
+            border-radius: 8px;
+            width: 100%;
+            margin-bottom: 10px;
+            color: rgb(65, 65, 65);
+            border-color: rgb(157, 169, 176);
+            background: white;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            resize: none;
+        }
+
+        .send-msg-btn {
+            text-align: center;
+            display: inline-block;
+            margin-left: 10px;
+        }
+    }
+}
+
+.bot-icon {
+    width: 72px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 1px 6px 1px #00000029;
+    border-radius: 12px;
+}
+
+.bot-icon img {
+    width: 45px;
+    border-radius: 47px;
+}
+
+.show {
+    display: block;
+    bottom: 130px;
+}
